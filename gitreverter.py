@@ -101,34 +101,35 @@ def setup_args():
         "--path",
         type=str,
         required=True,
-        help="Local path to the git repository",
+        help="Path to local git repository",
     )
     parser.add_argument(
         "--ref",
         type=str,
         required=True,
-        help="Ref to checkout before analysis",
+        help="Target ref (branch or tag)",
     )
     parser.add_argument(
         "--commit",
         type=str,
         required=True,
-        help="Target commit hash for analysis",
+        help="Target commit hash",
     )
     group.add_argument(
         "--analyze",
         action="store_true",
-        help="Analyze the target commit",
+        help="Analyze existence of conflicts when individually reverting each commit, "
+        + "up to and including the target commit",
     )
     group.add_argument(
         "--revert",
         action="store_true",
-        help="Revert the target commit",
+        help="Revert the all commits, up to and including the target commit",
     )
     group.add_argument(
         "--cleanup",
         action="store_true",
-        help="Cleanup temporary branches",
+        help="Cleanup git_reverter_* temporary branches",
     )
     return parser.parse_args()
 
